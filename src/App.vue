@@ -1,31 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app id="app">
+    <app-zones v-if="['/'].indexOf($route.name) > -1"></app-zones>
+    <v-content>
+      <!-- not needed -->
+      <!-- router-view></router-view -->
+      <v-container fill-height>
+        <v-layout align-space-around justify-center fill-height column>
+          <v-card dark color="primary" flat height="50%">
+          <div class="text-xs-center">
+            <v-btn fab dark large color="purple">
+              <v-icon>add</v-icon>
+            </v-btn>
+            <div class="power">up</div>
+          </div>
+         </v-card>
+         <v-card dark color="secondary" flat height="50%">
+          <div class="text-xs-center">
+            <v-btn fab dark large color="blue">
+              <v-icon>add</v-icon>
+            </v-btn>
+            <div class="power">down</div>
+          </div>
+        </v-card>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+import AppZones from '@/components/AppZones';
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+export default {
+  name: 'App',
+  components: {
+      AppZones
+  }
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+</script>
+<style scoped>
+.content-container {
+  margin: auto;
+  height: 50vh;
+}
+.power {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 </style>
